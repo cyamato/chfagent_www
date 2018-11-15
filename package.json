@@ -1,0 +1,32 @@
+{
+  "name": "chfagent_www",
+  "version": "1.0.0",
+  "description": "Web Front End for Kentik CHFAgent",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest --colors --expand --logHeapUsage --runInBand && cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cyamato/chfagent_www.git"
+  },
+  "keywords": [
+    "Kentik",
+    "CHFAgent",
+    "Netflow",
+    "IPFIX",
+    "sFlow",
+    "Proxy"
+  ],
+  "author": "Craig Yamato",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/cyamato/chfagent_www/issues"
+  },
+  "homepage": "https://github.com/cyamato/chfagent_www#readme",
+  "dependencies": {
+    "@fortawesome/fontawesome-free": "^5.5.0",
+    "cookie-parser": "^1.4.3",
+    "express": "^4.16.4"
+  }
+}

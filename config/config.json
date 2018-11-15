@@ -1,0 +1,30 @@
+{
+    "chfagent": {
+        "status_port": 9996,
+        "status_host": "localhost",
+        "config_loc": "/etc/sysconfig/chfagent",
+        "chfagentDebFilename": "./bin/chfagent-xenial_latest_amd64.deb",
+        "chfagentDownloadURL": "https://kentik.github.io/downloads/chfagent/ubuntu/16.04/chfagent-xenial_latest_amd64.deb"
+    },
+    "server": {
+        "log": "./logs/chfagent_www.jsonl",
+        "cookieSecrit": "pdBSwt4P",
+        "inactiveTimeout": 60000
+    },
+    "kentik": {
+        "network": {
+            "device": {
+                "method": "GET",
+                "hostname": "api.kentik.com",
+                "path": "/api/v5/devices",
+                "headers": {
+                    "X-CH-Auth-Email": "",
+                    "X-CH-Auth-API-Token": "",
+                    "Content-Type": "application/json",
+                    "cache-control": "no-cache"
+                }
+            }
+        }
+    }
+}
+
