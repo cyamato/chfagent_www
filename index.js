@@ -64,7 +64,6 @@ try {
     next();
   });
   app.use((req, res, next) => {
-    console.log(req.url);
     let loggedInCookie = req.signedCookies['chfagent_www'] ? JSON.parse(req.signedCookies['chfagent_www']) : false;
     if (loggedInCookie && ((loggedInCookie.date + local_config.server.inactiveTimeout - Date.now()) > 0)) {
       loggedInCookie.date = Date.now();
@@ -76,7 +75,6 @@ try {
           signed: true
         }
       );
-      console.log('ok');
       next();
     } else {
       if (
@@ -88,12 +86,9 @@ try {
         req.url == '/api/v1/login' || 
         req.url == '/favicon.ico'
       ) {
-        console.log('ok');
         next();
       }
       else {
-        console.log('no');
-        console.log(loggedInCookie);
         res.sendStatus(403);
       }
     }

@@ -5,7 +5,9 @@
   "main": "index.js",
   "scripts": {
     "start": "pm2-runtime index.js",
-    "test": "jest --colors --expand --logHeapUsage --runInBand && cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js"
+    "test": "jest --colors --expand --logHeapUsage --runInBand && cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js",
+    "pull": "git pull origin master",
+    "push": "git add . && git commit -m 'auto commit' && git push origin master"
   },
   "repository": {
     "type": "git",
