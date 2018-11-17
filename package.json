@@ -4,6 +4,7 @@
   "description": "Web Front End for Kentik CHFAgent",
   "main": "index.js",
   "scripts": {
+    "start": "pm2-runtime index.js",
     "test": "jest --colors --expand --logHeapUsage --runInBand && cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js"
   },
   "repository": {

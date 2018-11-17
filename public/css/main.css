@@ -150,7 +150,7 @@ body {
 .field {
     display: flex;
     min-height: 34px;
-    max-height: 340px;
+    max-height: 500px;
     align-items: center;
     padding-left: 10px;
     background-color: #ffffff;

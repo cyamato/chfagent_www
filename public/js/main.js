@@ -240,7 +240,7 @@ function loadCHFAgentConfig() {
             } else if (this.readyState == 4) {
                 hideLoadingIcon();
                 console.error('Error: CHFAgent reuest for Config');
-                console.log(this);
+                console.error(this);
                 reject(this.status);
             }
         };
@@ -253,6 +253,7 @@ function loadCHFAgentConfig() {
 function loadCHFAgentStatus() {
     let xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = function() {
+        console.log(this.responseText + ": " + this.status);
         if (this.readyState == 4 && this.status == 200) {
             if (this.responseText != lastStatus) {
                 lastStatus = this.responseText;
@@ -298,7 +299,7 @@ function loadCHFAgentStatus() {
         } else if (this.readyState == 4) {
             hideLoadingIcon();
             console.error('Error: CHFAgent reuest for Status');
-            console.log(this);
+            console.error(this);
         }
     };
     showLoadingIcon();
@@ -322,23 +323,30 @@ function updateChfagent() {
         host: document.getElementById("ipAddress").value,
         port: document.getElementById("ipPort").value
     };
-    
+    console.log('Update Processing');
     let xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = function() {
+	console.log('State Change: '+this.readyState+":"+this.status);
         if (this.readyState == 4 && this.status == 201) {
+            console.log('Done');
             showChfagentUpdateNotice();
             hideLoadingIcon();
+            document.getElementById("status").style.display = "flex";
+            document.getElementById("config").style.display = "none";
+            document.getElementById("about").style.display = "none";
         } else if (this.readyState == 4 && this.status == 403) {
+            cosnole.log('No Auth');
             notAuth();
             hideLoadingIcon();
         } else if (this.readyState == 4) {
+	    console.log('Error');
             hideLoadingIcon();
             console.error('Error: CHFAgent reuest for Status');
-            console.log(this);
+            console.error(this);
         }
     };
     showLoadingIcon();
-    
+
     let putUdate = "/api/v1/chfagent/config/host";
     if (chfAgentConfig.token) {
         putUdate = "api/v1/chfagent/config";
@@ -361,7 +369,7 @@ function startCHFAgent() {
             } else if (this.readyState == 4) {
                 hideLoadingIcon();
                 console.error('Error: Server Respose for requst to START');
-                console.log(this);
+                console.error(this);
                 reject(this.status);
             }
         };
@@ -384,7 +392,7 @@ function stopCHFAgent() {
             } else if (this.readyState == 4) {
                 hideLoadingIcon();
                 console.error('Error: Server Respose for requst to STOP');
-                console.log(this);
+                console.error(this);
                 reject(this.status);
             }
         };
@@ -407,7 +415,7 @@ function restartCHFAgent() {
             } else if (this.readyState == 4) {
                 hideLoadingIcon();
                 console.error('Error: Server Respose for requst to RESTART');
-                console.log(this);
+                console.error(this);
                 reject(this.status);
             }
         };
@@ -445,7 +453,7 @@ function checkForUpdate() {
             } else if (this.readyState == 4) {
                 hideLoadingIcon();
                 console.error('Error: Server Respose for requst for Update Status');
-                console.log(this);
+                console.error(this);
                 reject(this.status);
             }
         };
@@ -465,12 +473,15 @@ function doUpdate() {
                 if (chfAgentUpdate.update) {
                     hideCHFAgentUpdate();
                     showChfagentUpdateNotice();
+                    document.getElementById("status").style.display = "flex";
+            	    document.getElementById("config").style.display = "none";
+                    document.getElementById("about").style.display = "none";
                 }
                 resolve(true);
             } else if (this.readyState == 4) {
                 hideLoadingIcon();
                 console.error('Error: Server Respose for requst to do Update Status');
-                console.log(this);
+                console.error(this);
                 reject(this.status);
             }
         };
@@ -514,7 +525,7 @@ function checkAuth() {
             notAuth();
         } else if (this.readyState == 4) {
             console.error('Error: CHFAgent Authrizing');
-            console.log(this);
+            console.error(this);
             hideLoadingIcon();
         }
     };

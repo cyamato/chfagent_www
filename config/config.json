@@ -3,13 +3,13 @@
         "status_port": 9996,
         "status_host": "localhost",
         "config_loc": "/lib/systemd/system/chfagent.service.d/local.conf",
-        "chfagentDebFilename": "./bin/chfagent-xenial_latest_amd64.deb",
-        "chfagentDownloadURL": "https://kentik.github.io/downloads/chfagent/ubuntu/16.04/chfagent-xenial_latest_amd64.deb"
+        "chfagentDebFilename": "./bin/chfagent-bionic_latest_amd64.deb",
+        "chfagentDownloadURL": "https://kentik.github.io/downloads/chfagent/ubuntu/18.04/chfagent-bionic_latest_amd64.deb"
     },
     "server": {
         "log": "./logs/chfagent_www.jsonl",
         "cookieSecrit": "pdBSwt4P",
-        "inactiveTimeout": 60000
+        "inactiveTimeout": 600000
     },
     "kentik": {
         "network": {

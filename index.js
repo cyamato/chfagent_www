@@ -24,7 +24,7 @@ const config = require('./lib/config.js');
 const local_config = config.get();
 const auth = require('./lib/login.js');
 
-const port = process.env.PORT || 443;
+const port = process.env.PORT || 8080;
 const runningMsg = "CHFAgent Web Front end listening on port " + port + "!";
 
 const logging = fork('./lib/log.js');
@@ -64,6 +64,7 @@ try {
     next();
   });
   app.use((req, res, next) => {
+    console.log(req.url);
     let loggedInCookie = req.signedCookies['chfagent_www'] ? JSON.parse(req.signedCookies['chfagent_www']) : false;
     if (loggedInCookie && ((loggedInCookie.date + local_config.server.inactiveTimeout - Date.now()) > 0)) {
       loggedInCookie.date = Date.now();
@@ -75,6 +76,7 @@ try {
           signed: true
         }
       );
+      console.log('ok');
       next();
     } else {
       if (
@@ -86,9 +88,12 @@ try {
         req.url == '/api/v1/login' || 
         req.url == '/favicon.ico'
       ) {
+        console.log('ok');
         next();
       }
       else {
+        console.log('no');
+        console.log(loggedInCookie);
         res.sendStatus(403);
       }
     }
@@ -219,10 +224,9 @@ try {
   logging.send(err);
 }
 
-// https.createServer({
-//   key: fs.readFileSync('./config/server.key'),
-//   cert: fs.readFileSync('./config/server.cert')
-// }, app)
+// https.createServer({ // key: fs.readFileSync('./config/server.key'), 
+// cert: fs.readFileSync('./config/server.cert') // }, app) // 
+// .listen(port); 
 app.listen(port, () => {
   console.log(runningMsg);
   logging.send({Start: runningMsg});
