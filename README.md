@@ -4,7 +4,7 @@ CHFAgent_www is an unofficial web frontend to the Kentik CHFAgent Flow Proxy sof
 
 ## Getting Started
 
-- AWS:  Launch an EC2 instance using the public AMI "Unofficial Kentik CHFAgent AWS Virtual Appliance".  The Excel spreadsheet "CHFAgent AWS Virtual Appliance Calculator.xlsx" included in the root directory provides a simple calculator to help you chose the write EC2 size.
+- AWS:  Launch an EC2 instance using the public AMI "Unofficial Kentik CHFAgent AWS Virtual Appliance".  The Excel spreadsheet "CHFAgent AWS Virtual Appliance Calculator.xlsx" included in the root directory provides a simple calculator to help you chose the write EC2 size.  The image was built using a standard Ubuntu 18.04 image.
 
 <center>
 
@@ -37,6 +37,13 @@ CHFAgent_www is an unofficial web frontend to the Kentik CHFAgent Flow Proxy sof
 </center>
 
 - Your Own Server:  Clone repository to a local directory.  It is recommended that you use a process manager such as PM2 to launch and control CHFAgent_www.
+
+- Security:  Permissions should be given for incoming: 
+  - TCP Port 8080 (Web Interface) 
+  - TCP/UDP Port 161 (SNMP) 
+  - TCP Port 22 (SSH)
+  - UDP Port 9995 (Default Flow port and can be changed)
+  - UDP Port 9996 (CHFAgent Status Reporting - +1 of Flow port)
 
 ## Running
 
